@@ -1,4 +1,14 @@
-# keep studying
+# Keep Studying
+
+## 多看名人自传/演讲
+
+个人特别喜欢的一位演员 Denzel Washington 演讲
+
+Put God First - Denzel Washington Motivational & Inspiring Commencement Speech
+
+乔布斯的演讲
+
+Steve Jobs' 2005 Stanford Commencement Address
 
 ## 3blue1brown 非常经典的高数课程（科学上网）
 
