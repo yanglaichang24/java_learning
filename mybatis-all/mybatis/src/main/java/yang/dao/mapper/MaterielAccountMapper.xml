@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yang.dao.mapper.MaterielAccountMapper">
+  <resultMap id="BaseResultMap" type="yang.dao.model.AccountModel">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="media_id" jdbcType="INTEGER" property="mediaId" />
+    <result column="platform_account_id" jdbcType="VARCHAR" property="platformAccountId" />
+    <result column="account_name" jdbcType="VARCHAR" property="accountName" />
+    <result column="opt_status" jdbcType="SMALLINT" property="optStatus" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="added_payment" jdbcType="DOUBLE" property="addedPayment" />
+    <result column="balance" jdbcType="DOUBLE" property="balance" />
+    <result column="budget" jdbcType="DOUBLE" property="budget" />
+    <result column="budget_mode" jdbcType="SMALLINT" property="budgetMode" />
+    <result column="region_target" jdbcType="VARCHAR" property="regionTarget" />
+    <result column="exclude_ip" jdbcType="VARCHAR" property="excludeIp" />
+    <result column="budget_offline_time" jdbcType="VARCHAR" property="budgetOfflineTime" />
+    <result column="region_price_factor" jdbcType="VARCHAR" property="regionPriceFactor" />
+    <result column="user_level" jdbcType="SMALLINT" property="userLevel" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="media_create_time" jdbcType="TIMESTAMP" property="mediaCreateTime" />
+    <result column="media_update_time" jdbcType="TIMESTAMP" property="mediaUpdateTime" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="sync_status" jdbcType="TINYINT" property="syncStatus" />
+    <result column="sync_failure" jdbcType="VARCHAR" property="syncFailure" />
+    <result column="sync_time" jdbcType="TIMESTAMP" property="syncTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="deleted" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="media_info" jdbcType="VARCHAR" property="mediaInfo" />
+    <result column="bg" jdbcType="SMALLINT" property="bg" />
+    <result column="tenant_id" jdbcType="BIGINT" property="tenantId" />
+    <result column="app" jdbcType="VARCHAR" property="app" />
+    <result column="platform" jdbcType="VARCHAR" property="platform" />
+    <result column="delivery_id" jdbcType="INTEGER" property="deliveryId" />
+    <result column="city_type_id" jdbcType="INTEGER" property="cityTypeId" />
+    <result column="bg_alias" jdbcType="VARCHAR" property="bgAlias" />
+    <result column="manager" jdbcType="VARCHAR" property="manager" />
+    <result column="manager_id" jdbcType="INTEGER" property="managerId" />
+    <result column="maincate" jdbcType="VARCHAR" property="maincate" />
+    <result column="maincate_id" jdbcType="INTEGER" property="maincateId" />
+    <result column="adtype_id" jdbcType="INTEGER" property="adtypeId" />
+    <result column="resource_id" jdbcType="INTEGER" property="resourceId" />
+    <result column="super_account_id" jdbcType="BIGINT" property="superAccountId" />
+    <result column="auth_info" jdbcType="VARCHAR" property="authInfo" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="update_user_id" jdbcType="BIGINT" property="updateUserId" />
+    <result column="bg_direction" jdbcType="VARCHAR" property="bgDirection" />
+    <result column="bg_direction_id" jdbcType="INTEGER" property="bgDirectionId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, media_id, platform_account_id, account_name, opt_status, status, added_payment, 
+    balance, budget, budget_mode, region_target, exclude_ip, budget_offline_time, region_price_factor, 
+    user_level, create_time, update_time, media_create_time, media_update_time, operator, 
+    sync_status, sync_failure, sync_time, is_deleted, creator, media_info, bg, tenant_id, 
+    app, platform, delivery_id, city_type_id, bg_alias, manager, manager_id, maincate, 
+    maincate_id, adtype_id, resource_id, super_account_id, auth_info, create_user_id, 
+    update_user_id, bg_direction, bg_direction_id
+  </sql>
+  <select id="selectByExample" parameterType="yang.dao.model.AccountModelExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from materiel_account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from materiel_account
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from materiel_account
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="yang.dao.model.AccountModelExample">
+    delete from materiel_account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="yang.dao.model.AccountModel">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into materiel_account (media_id, platform_account_id, account_name, 
+      opt_status, status, added_payment, 
+      balance, budget, budget_mode, 
+      region_target, exclude_ip, budget_offline_time, 
+      region_price_factor, user_level, create_time, 
+      update_time, media_create_time, media_update_time, 
+      operator, sync_status, sync_failure, 
+      sync_time, is_deleted, creator, 
+      media_info, bg, tenant_id, 
+      app, platform, delivery_id, 
+      city_type_id, bg_alias, manager, 
+      manager_id, maincate, maincate_id, 
+      adtype_id, resource_id, super_account_id, 
+      auth_info, create_user_id, update_user_id, 
+      bg_direction, bg_direction_id)
+    values (#{mediaId,jdbcType=INTEGER}, #{platformAccountId,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, 
+      #{optStatus,jdbcType=SMALLINT}, #{status,jdbcType=SMALLINT}, #{addedPayment,jdbcType=DOUBLE}, 
+      #{balance,jdbcType=DOUBLE}, #{budget,jdbcType=DOUBLE}, #{budgetMode,jdbcType=SMALLINT}, 
+      #{regionTarget,jdbcType=VARCHAR}, #{excludeIp,jdbcType=VARCHAR}, #{budgetOfflineTime,jdbcType=VARCHAR}, 
+      #{regionPriceFactor,jdbcType=VARCHAR}, #{userLevel,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{mediaCreateTime,jdbcType=TIMESTAMP}, #{mediaUpdateTime,jdbcType=TIMESTAMP}, 
+      #{operator,jdbcType=VARCHAR}, #{syncStatus,jdbcType=TINYINT}, #{syncFailure,jdbcType=VARCHAR}, 
+      #{syncTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=TINYINT}, #{creator,jdbcType=VARCHAR}, 
+      #{mediaInfo,jdbcType=VARCHAR}, #{bg,jdbcType=SMALLINT}, #{tenantId,jdbcType=BIGINT}, 
+      #{app,jdbcType=VARCHAR}, #{platform,jdbcType=VARCHAR}, #{deliveryId,jdbcType=INTEGER}, 
+      #{cityTypeId,jdbcType=INTEGER}, #{bgAlias,jdbcType=VARCHAR}, #{manager,jdbcType=VARCHAR}, 
+      #{managerId,jdbcType=INTEGER}, #{maincate,jdbcType=VARCHAR}, #{maincateId,jdbcType=INTEGER}, 
+      #{adtypeId,jdbcType=INTEGER}, #{resourceId,jdbcType=INTEGER}, #{superAccountId,jdbcType=BIGINT}, 
+      #{authInfo,jdbcType=VARCHAR}, #{createUserId,jdbcType=BIGINT}, #{updateUserId,jdbcType=BIGINT}, 
+      #{bgDirection,jdbcType=VARCHAR}, #{bgDirectionId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="yang.dao.model.AccountModel">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into materiel_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mediaId != null">
+        media_id,
+      </if>
+      <if test="platformAccountId != null">
+        platform_account_id,
+      </if>
+      <if test="accountName != null">
+        account_name,
+      </if>
+      <if test="optStatus != null">
+        opt_status,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="addedPayment != null">
+        added_payment,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="budget != null">
+        budget,
+      </if>
+      <if test="budgetMode != null">
+        budget_mode,
+      </if>
+      <if test="regionTarget != null">
+        region_target,
+      </if>
+      <if test="excludeIp != null">
+        exclude_ip,
+      </if>
+      <if test="budgetOfflineTime != null">
+        budget_offline_time,
+      </if>
+      <if test="regionPriceFactor != null">
+        region_price_factor,
+      </if>
+      <if test="userLevel != null">
+        user_level,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="mediaCreateTime != null">
+        media_create_time,
+      </if>
+      <if test="mediaUpdateTime != null">
+        media_update_time,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="syncStatus != null">
+        sync_status,
+      </if>
+      <if test="syncFailure != null">
+        sync_failure,
+      </if>
+      <if test="syncTime != null">
+        sync_time,
+      </if>
+      <if test="deleted != null">
+        is_deleted,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="mediaInfo != null">
+        media_info,
+      </if>
+      <if test="bg != null">
+        bg,
+      </if>
+      <if test="tenantId != null">
+        tenant_id,
+      </if>
+      <if test="app != null">
+        app,
+      </if>
+      <if test="platform != null">
+        platform,
+      </if>
+      <if test="deliveryId != null">
+        delivery_id,
+      </if>
+      <if test="cityTypeId != null">
+        city_type_id,
+      </if>
+      <if test="bgAlias != null">
+        bg_alias,
+      </if>
+      <if test="manager != null">
+        manager,
+      </if>
+      <if test="managerId != null">
+        manager_id,
+      </if>
+      <if test="maincate != null">
+        maincate,
+      </if>
+      <if test="maincateId != null">
+        maincate_id,
+      </if>
+      <if test="adtypeId != null">
+        adtype_id,
+      </if>
+      <if test="resourceId != null">
+        resource_id,
+      </if>
+      <if test="superAccountId != null">
+        super_account_id,
+      </if>
+      <if test="authInfo != null">
+        auth_info,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="bgDirection != null">
+        bg_direction,
+      </if>
+      <if test="bgDirectionId != null">
+        bg_direction_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mediaId != null">
+        #{mediaId,jdbcType=INTEGER},
+      </if>
+      <if test="platformAccountId != null">
+        #{platformAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null">
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="optStatus != null">
+        #{optStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="addedPayment != null">
+        #{addedPayment,jdbcType=DOUBLE},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="budget != null">
+        #{budget,jdbcType=DOUBLE},
+      </if>
+      <if test="budgetMode != null">
+        #{budgetMode,jdbcType=SMALLINT},
+      </if>
+      <if test="regionTarget != null">
+        #{regionTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="excludeIp != null">
+        #{excludeIp,jdbcType=VARCHAR},
+      </if>
+      <if test="budgetOfflineTime != null">
+        #{budgetOfflineTime,jdbcType=VARCHAR},
+      </if>
+      <if test="regionPriceFactor != null">
+        #{regionPriceFactor,jdbcType=VARCHAR},
+      </if>
+      <if test="userLevel != null">
+        #{userLevel,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mediaCreateTime != null">
+        #{mediaCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mediaUpdateTime != null">
+        #{mediaUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="syncStatus != null">
+        #{syncStatus,jdbcType=TINYINT},
+      </if>
+      <if test="syncFailure != null">
+        #{syncFailure,jdbcType=VARCHAR},
+      </if>
+      <if test="syncTime != null">
+        #{syncTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaInfo != null">
+        #{mediaInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="bg != null">
+        #{bg,jdbcType=SMALLINT},
+      </if>
+      <if test="tenantId != null">
+        #{tenantId,jdbcType=BIGINT},
+      </if>
+      <if test="app != null">
+        #{app,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryId != null">
+        #{deliveryId,jdbcType=INTEGER},
+      </if>
+      <if test="cityTypeId != null">
+        #{cityTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="bgAlias != null">
+        #{bgAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="manager != null">
+        #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="managerId != null">
+        #{managerId,jdbcType=INTEGER},
+      </if>
+      <if test="maincate != null">
+        #{maincate,jdbcType=VARCHAR},
+      </if>
+      <if test="maincateId != null">
+        #{maincateId,jdbcType=INTEGER},
+      </if>
+      <if test="adtypeId != null">
+        #{adtypeId,jdbcType=INTEGER},
+      </if>
+      <if test="resourceId != null">
+        #{resourceId,jdbcType=INTEGER},
+      </if>
+      <if test="superAccountId != null">
+        #{superAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="authInfo != null">
+        #{authInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="bgDirection != null">
+        #{bgDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="bgDirectionId != null">
+        #{bgDirectionId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="yang.dao.model.AccountModelExample" resultType="java.lang.Long">
+    select count(*) from materiel_account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update materiel_account
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.mediaId != null">
+        media_id = #{record.mediaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.platformAccountId != null">
+        platform_account_id = #{record.platformAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountName != null">
+        account_name = #{record.accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optStatus != null">
+        opt_status = #{record.optStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=SMALLINT},
+      </if>
+      <if test="record.addedPayment != null">
+        added_payment = #{record.addedPayment,jdbcType=DOUBLE},
+      </if>
+      <if test="record.balance != null">
+        balance = #{record.balance,jdbcType=DOUBLE},
+      </if>
+      <if test="record.budget != null">
+        budget = #{record.budget,jdbcType=DOUBLE},
+      </if>
+      <if test="record.budgetMode != null">
+        budget_mode = #{record.budgetMode,jdbcType=SMALLINT},
+      </if>
+      <if test="record.regionTarget != null">
+        region_target = #{record.regionTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="record.excludeIp != null">
+        exclude_ip = #{record.excludeIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.budgetOfflineTime != null">
+        budget_offline_time = #{record.budgetOfflineTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regionPriceFactor != null">
+        region_price_factor = #{record.regionPriceFactor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userLevel != null">
+        user_level = #{record.userLevel,jdbcType=SMALLINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mediaCreateTime != null">
+        media_create_time = #{record.mediaCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mediaUpdateTime != null">
+        media_update_time = #{record.mediaUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.operator != null">
+        operator = #{record.operator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.syncStatus != null">
+        sync_status = #{record.syncStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.syncFailure != null">
+        sync_failure = #{record.syncFailure,jdbcType=VARCHAR},
+      </if>
+      <if test="record.syncTime != null">
+        sync_time = #{record.syncTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deleted != null">
+        is_deleted = #{record.deleted,jdbcType=TINYINT},
+      </if>
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mediaInfo != null">
+        media_info = #{record.mediaInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bg != null">
+        bg = #{record.bg,jdbcType=SMALLINT},
+      </if>
+      <if test="record.tenantId != null">
+        tenant_id = #{record.tenantId,jdbcType=BIGINT},
+      </if>
+      <if test="record.app != null">
+        app = #{record.app,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platform != null">
+        platform = #{record.platform,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliveryId != null">
+        delivery_id = #{record.deliveryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cityTypeId != null">
+        city_type_id = #{record.cityTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.bgAlias != null">
+        bg_alias = #{record.bgAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manager != null">
+        manager = #{record.manager,jdbcType=VARCHAR},
+      </if>
+      <if test="record.managerId != null">
+        manager_id = #{record.managerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.maincate != null">
+        maincate = #{record.maincate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maincateId != null">
+        maincate_id = #{record.maincateId,jdbcType=INTEGER},
+      </if>
+      <if test="record.adtypeId != null">
+        adtype_id = #{record.adtypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.resourceId != null">
+        resource_id = #{record.resourceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.superAccountId != null">
+        super_account_id = #{record.superAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="record.authInfo != null">
+        auth_info = #{record.authInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateUserId != null">
+        update_user_id = #{record.updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.bgDirection != null">
+        bg_direction = #{record.bgDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bgDirectionId != null">
+        bg_direction_id = #{record.bgDirectionId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update materiel_account
+    set id = #{record.id,jdbcType=BIGINT},
+      media_id = #{record.mediaId,jdbcType=INTEGER},
+      platform_account_id = #{record.platformAccountId,jdbcType=VARCHAR},
+      account_name = #{record.accountName,jdbcType=VARCHAR},
+      opt_status = #{record.optStatus,jdbcType=SMALLINT},
+      status = #{record.status,jdbcType=SMALLINT},
+      added_payment = #{record.addedPayment,jdbcType=DOUBLE},
+      balance = #{record.balance,jdbcType=DOUBLE},
+      budget = #{record.budget,jdbcType=DOUBLE},
+      budget_mode = #{record.budgetMode,jdbcType=SMALLINT},
+      region_target = #{record.regionTarget,jdbcType=VARCHAR},
+      exclude_ip = #{record.excludeIp,jdbcType=VARCHAR},
+      budget_offline_time = #{record.budgetOfflineTime,jdbcType=VARCHAR},
+      region_price_factor = #{record.regionPriceFactor,jdbcType=VARCHAR},
+      user_level = #{record.userLevel,jdbcType=SMALLINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      media_create_time = #{record.mediaCreateTime,jdbcType=TIMESTAMP},
+      media_update_time = #{record.mediaUpdateTime,jdbcType=TIMESTAMP},
+      operator = #{record.operator,jdbcType=VARCHAR},
+      sync_status = #{record.syncStatus,jdbcType=TINYINT},
+      sync_failure = #{record.syncFailure,jdbcType=VARCHAR},
+      sync_time = #{record.syncTime,jdbcType=TIMESTAMP},
+      is_deleted = #{record.deleted,jdbcType=TINYINT},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      media_info = #{record.mediaInfo,jdbcType=VARCHAR},
+      bg = #{record.bg,jdbcType=SMALLINT},
+      tenant_id = #{record.tenantId,jdbcType=BIGINT},
+      app = #{record.app,jdbcType=VARCHAR},
+      platform = #{record.platform,jdbcType=VARCHAR},
+      delivery_id = #{record.deliveryId,jdbcType=INTEGER},
+      city_type_id = #{record.cityTypeId,jdbcType=INTEGER},
+      bg_alias = #{record.bgAlias,jdbcType=VARCHAR},
+      manager = #{record.manager,jdbcType=VARCHAR},
+      manager_id = #{record.managerId,jdbcType=INTEGER},
+      maincate = #{record.maincate,jdbcType=VARCHAR},
+      maincate_id = #{record.maincateId,jdbcType=INTEGER},
+      adtype_id = #{record.adtypeId,jdbcType=INTEGER},
+      resource_id = #{record.resourceId,jdbcType=INTEGER},
+      super_account_id = #{record.superAccountId,jdbcType=BIGINT},
+      auth_info = #{record.authInfo,jdbcType=VARCHAR},
+      create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      update_user_id = #{record.updateUserId,jdbcType=BIGINT},
+      bg_direction = #{record.bgDirection,jdbcType=VARCHAR},
+      bg_direction_id = #{record.bgDirectionId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="yang.dao.model.AccountModel">
+    update materiel_account
+    <set>
+      <if test="mediaId != null">
+        media_id = #{mediaId,jdbcType=INTEGER},
+      </if>
+      <if test="platformAccountId != null">
+        platform_account_id = #{platformAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null">
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="optStatus != null">
+        opt_status = #{optStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="addedPayment != null">
+        added_payment = #{addedPayment,jdbcType=DOUBLE},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="budget != null">
+        budget = #{budget,jdbcType=DOUBLE},
+      </if>
+      <if test="budgetMode != null">
+        budget_mode = #{budgetMode,jdbcType=SMALLINT},
+      </if>
+      <if test="regionTarget != null">
+        region_target = #{regionTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="excludeIp != null">
+        exclude_ip = #{excludeIp,jdbcType=VARCHAR},
+      </if>
+      <if test="budgetOfflineTime != null">
+        budget_offline_time = #{budgetOfflineTime,jdbcType=VARCHAR},
+      </if>
+      <if test="regionPriceFactor != null">
+        region_price_factor = #{regionPriceFactor,jdbcType=VARCHAR},
+      </if>
+      <if test="userLevel != null">
+        user_level = #{userLevel,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mediaCreateTime != null">
+        media_create_time = #{mediaCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mediaUpdateTime != null">
+        media_update_time = #{mediaUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="syncStatus != null">
+        sync_status = #{syncStatus,jdbcType=TINYINT},
+      </if>
+      <if test="syncFailure != null">
+        sync_failure = #{syncFailure,jdbcType=VARCHAR},
+      </if>
+      <if test="syncTime != null">
+        sync_time = #{syncTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        is_deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaInfo != null">
+        media_info = #{mediaInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="bg != null">
+        bg = #{bg,jdbcType=SMALLINT},
+      </if>
+      <if test="tenantId != null">
+        tenant_id = #{tenantId,jdbcType=BIGINT},
+      </if>
+      <if test="app != null">
+        app = #{app,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        platform = #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryId != null">
+        delivery_id = #{deliveryId,jdbcType=INTEGER},
+      </if>
+      <if test="cityTypeId != null">
+        city_type_id = #{cityTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="bgAlias != null">
+        bg_alias = #{bgAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="manager != null">
+        manager = #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="managerId != null">
+        manager_id = #{managerId,jdbcType=INTEGER},
+      </if>
+      <if test="maincate != null">
+        maincate = #{maincate,jdbcType=VARCHAR},
+      </if>
+      <if test="maincateId != null">
+        maincate_id = #{maincateId,jdbcType=INTEGER},
+      </if>
+      <if test="adtypeId != null">
+        adtype_id = #{adtypeId,jdbcType=INTEGER},
+      </if>
+      <if test="resourceId != null">
+        resource_id = #{resourceId,jdbcType=INTEGER},
+      </if>
+      <if test="superAccountId != null">
+        super_account_id = #{superAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="authInfo != null">
+        auth_info = #{authInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="bgDirection != null">
+        bg_direction = #{bgDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="bgDirectionId != null">
+        bg_direction_id = #{bgDirectionId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="yang.dao.model.AccountModel">
+    update materiel_account
+    set media_id = #{mediaId,jdbcType=INTEGER},
+      platform_account_id = #{platformAccountId,jdbcType=VARCHAR},
+      account_name = #{accountName,jdbcType=VARCHAR},
+      opt_status = #{optStatus,jdbcType=SMALLINT},
+      status = #{status,jdbcType=SMALLINT},
+      added_payment = #{addedPayment,jdbcType=DOUBLE},
+      balance = #{balance,jdbcType=DOUBLE},
+      budget = #{budget,jdbcType=DOUBLE},
+      budget_mode = #{budgetMode,jdbcType=SMALLINT},
+      region_target = #{regionTarget,jdbcType=VARCHAR},
+      exclude_ip = #{excludeIp,jdbcType=VARCHAR},
+      budget_offline_time = #{budgetOfflineTime,jdbcType=VARCHAR},
+      region_price_factor = #{regionPriceFactor,jdbcType=VARCHAR},
+      user_level = #{userLevel,jdbcType=SMALLINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      media_create_time = #{mediaCreateTime,jdbcType=TIMESTAMP},
+      media_update_time = #{mediaUpdateTime,jdbcType=TIMESTAMP},
+      operator = #{operator,jdbcType=VARCHAR},
+      sync_status = #{syncStatus,jdbcType=TINYINT},
+      sync_failure = #{syncFailure,jdbcType=VARCHAR},
+      sync_time = #{syncTime,jdbcType=TIMESTAMP},
+      is_deleted = #{deleted,jdbcType=TINYINT},
+      creator = #{creator,jdbcType=VARCHAR},
+      media_info = #{mediaInfo,jdbcType=VARCHAR},
+      bg = #{bg,jdbcType=SMALLINT},
+      tenant_id = #{tenantId,jdbcType=BIGINT},
+      app = #{app,jdbcType=VARCHAR},
+      platform = #{platform,jdbcType=VARCHAR},
+      delivery_id = #{deliveryId,jdbcType=INTEGER},
+      city_type_id = #{cityTypeId,jdbcType=INTEGER},
+      bg_alias = #{bgAlias,jdbcType=VARCHAR},
+      manager = #{manager,jdbcType=VARCHAR},
+      manager_id = #{managerId,jdbcType=INTEGER},
+      maincate = #{maincate,jdbcType=VARCHAR},
+      maincate_id = #{maincateId,jdbcType=INTEGER},
+      adtype_id = #{adtypeId,jdbcType=INTEGER},
+      resource_id = #{resourceId,jdbcType=INTEGER},
+      super_account_id = #{superAccountId,jdbcType=BIGINT},
+      auth_info = #{authInfo,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      update_user_id = #{updateUserId,jdbcType=BIGINT},
+      bg_direction = #{bgDirection,jdbcType=VARCHAR},
+      bg_direction_id = #{bgDirectionId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="yang.dao.model.AccountModelExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from materiel_account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

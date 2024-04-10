@@ -1,0 +1,114 @@
+
+#不配置默认是单机模式
+mode:
+  # 运行模式类型。可选配置：Standalone、Cluster
+  type: Standalone
+  # 持久化仓库配置
+  #repository:
+    #type: # 持久化仓库类型
+    #props: # 持久化仓库所需属性
+      #foo_key: foo_value
+      #bar_key: bar_value
+
+#集群模式
+#mode:
+  #type: Cluster
+    #repository:
+    #type: ZooKeeper
+    #props:
+    #namespace: governance
+    #server-lists: localhost:2181
+    #retryIntervalMilliseconds: 500
+    #timeToLiveSeconds: 60
+
+
+#数据源配置
+dataSources:
+      names: ds-0
+      ds-0:
+       type: com.alibaba.druid.pool.DruidDataSource
+       driver-class-name: com.mysql.jdbc.Driver
+       url: jdbc:mysql://localhost:3306/shardingsphere_0?serverTimezone=Asia/Shanghai&characterEncoding=utf-8
+       username: root
+       password: 123456
+       initial-size: 8
+       min-idle: 4
+       maxActive: 40
+       maxWait: 60000
+       timeBetweenEvictionRunsMillis: 60000
+       minEvictableIdleTimeMillis: 300000
+       testWhileIdle: true
+       testOnBorrow: false
+       testOnReturn: false
+       poolPreparedStatements: true
+       maxPoolPreparedStatementPerConnectionSize: 20
+       removeAbandoned: true
+       removeAbandonedTimeout: 180
+       logAbandoned: true
+
+#规则配置
+rules:
+  #分片
+  sharding:
+    # 数据分片规则配置
+    tables:
+
+      # 逻辑表名称
+      materiel_keyword:
+        # 由数据源名 + 表名组成（参考 Inline 语法规则）
+        actual-data-nodes: ds-$->{0..3}.materiel_keyword_$->{0..3}
+
+        #分库策略
+        database-strategy:
+          #用于单分片键的标准分片场景
+          standard:
+            sharding-column: platform_account_id
+            sharding-algorithm-name: materiel-db-inline
+
+        #分表策略
+        table-strategy:
+          standard:
+            sharding-column: platform_keyword_id
+            sharding-algorithm-name: kw-table-inline
+
+          # 分布式序列算法配置
+          key-generators:
+            snowflake:
+              type: SNOWFLAKE
+              props:
+                worker-id: 101
+
+          # 分片算法配置
+          sharding-algorithms:
+            #分库策略
+            materiel-db-inline:
+              #分片算法类型
+              type: INLINE
+              #分片算法属性配置
+              props:
+                algorithm-expression: ds-$->{platform_account_id.hashCode() & 3}
+
+            kw-table-inline:
+              type: INLINE
+              props:
+              algorithm-expression: materiel_keyword_$->{platform_keyword_id % 4}
+
+  #读写分离
+  #- !READWRITE_SPLITTING
+
+  #分布式事物
+  #- !TRANSACTION
+    #defaultType: # 事务模式，可选值 LOCAL/XA/BASE
+    #providerType: # 指定模式下的具体实现
+
+
+  #数据加密
+
+  #SQL 解析
+
+  #SQL 翻译
+
+  #数据分片路由缓存
+
+
+

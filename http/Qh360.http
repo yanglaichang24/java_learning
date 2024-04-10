@@ -1,0 +1,9 @@
+### Send POST request with json body
+POST https://api.e.360.cn/dianjing/keyword/getInfoByIdList
+Content-Type: application/x-www-form-urlencoded
+apiKey: a0249ffd822f944a2cb9d1ae768eeb54
+accessToken: b6febfef51d12c1aeea8a2459c0803d9ede3285eba4de2490
+subAccount: 58%E5%90%8C%E5%9F%8E%E6%8B%9B%E8%81%98M2
+
+idList=[54168592659]
+

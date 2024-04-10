@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 导入外部属性文件 -->
+<!--    <properties resource="jdbc.properties" />-->
+    <!-- 配置mybatis的开发环境 -->
+
+    <!-- 默认开启的 -->
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+    
+    
+    <environments default="development">
+        <environment id="development">
+            <!-- 配置mybatis的事物管理方式 -->
+            <transactionManager type="JDBC" />
+            <!-- 配置数据库连接 -->
+<!--            <dataSource type="POOLED">-->
+<!--                <property name="driver" value="${jdbc.driver}"/>-->
+<!--                <property name="url" value="${jdbc.url}"/>-->
+<!--                <property name="username" value="${jdbc.username}"/>-->
+<!--                <property name="password" value="${jdbc.password}"/>-->
+<!--            </dataSource>-->
+
+                <dataSource type="POOLED">
+                    <property name="driver" value="com.mysql.jdbc.Driver"/>
+                    <property name="url" value="jdbc:mysql://192.168.2.6:3306/test_db?characterEncoding=utf-8"/>
+                    <property name="username" value="root"/>
+                    <property name="password" value="123456"/>
+                </dataSource>
+
+<!--                            <dataSource type="POOLED">-->
+<!--                                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>-->
+<!--                                <property name="url" value="jdbc:mysql://test-eic-15.db.58dns.org:53384/db58_promotionlibtest?characterEncoding=utf-8"/>-->
+<!--                                <property name="username" value="promotion_test"/>-->
+<!--                                <property name="password" value="15215159467a66b5"/>-->
+<!--                            </dataSource>-->
+
+        </environment>
+    </environments>
+    <!-- 配置mapper映射 -->
+    <mappers>
+<!--        <mapper/>-->
+<!--        <package name="com.bj58.lianmeng.td.promotion.lib.dao.mapper"/>-->
+        <mapper resource="TaskMapper-cache.xml"/>
+    </mappers>
+</configuration>

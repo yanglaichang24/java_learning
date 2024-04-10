@@ -1,0 +1,22 @@
+server:
+  port: 50000
+
+spring:
+  application:
+    name: fegin-demo
+
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:9099/eureka
+
+logging:
+    level:
+      root: trace
+
+feign:
+  client:
+    config:
+      server-demo:
+        logger.level: FULL
+

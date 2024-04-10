@@ -1,0 +1,10 @@
+GET https://api.oceanengine.com/open_api/v3.0/project/list/?advertiser_id=1683689475158024
+Content-Type: application/json
+Access-Token: c522e264478394992f3c1642c30b999c95deb952
+
+> {%
+   client.test("Request executed successfully",
+   function() {
+     client.assert(response.status === 200, "Response status is not 200");
+   });
+%}

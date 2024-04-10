@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="lib_db" targetRuntime="MyBatis3">
+
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+            <property name="addRemarkComments" value="true"/>
+
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost/shardingsphere_0?characterEncoding=utf-8"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="yang.dao.model"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="yang.dao.mapper"
+                         targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="yang.dao.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <table schema="lib"
+               tableName="xxl_job_info"
+               domainObjectName="JobModel"
+               mapperName="JobMapper">
+
+
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+
+            <columnOverride column="is_deleted" property="deleted" javaType="java.lang.Boolean" jdbcType="TINYINT"/>
+            <columnOverride column="region_target" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="region_price_factor" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="media_info" javaType="java.lang.String" jdbcType="VARCHAR" />
+
+
+        </table>
+        <!--<table schema="lib"
+               tableName="materiel_keyword_0"
+               domainObjectName="MyKeywordModel"
+               mapperName="MyMaterielKeywordMapper">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="is_deleted" property="deleted" javaType="java.lang.Boolean" jdbcType="TINYINT"/>
+            <columnOverride column="pause" property="pause" javaType="java.lang.Boolean" jdbcType="TINYINT"/>
+
+            <columnOverride column="cate_first_flag" javaType="java.lang.String" jdbcType="VARCHAR" property="cateFirst"/>
+            <columnOverride column="cate_second_flag" javaType="java.lang.String" jdbcType="VARCHAR" property="cateSecond"/>
+            <columnOverride column="cate_third_flag" javaType="java.lang.String" jdbcType="VARCHAR" property="cateThird" />
+        </table>
+        <table schema="lib"
+               tableName="materiel_campaign"
+               domainObjectName="MyCampaignModel"
+               mapperName="MyMaterielCampaignMapper">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="is_deleted" property="deleted" javaType="java.lang.Boolean" jdbcType="TINYINT"/>
+            <columnOverride column="pause" property="pause" javaType="java.lang.Boolean" jdbcType="TINYINT"/>
+            <columnOverride column="region_target" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="region_price_factor" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="media_info" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="negative_words" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="exact_negative_words" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="front_end_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+
+            <columnOverride column="cate_first_flag" javaType="java.lang.String" jdbcType="VARCHAR" property="cateFirst"/>
+            <columnOverride column="cate_second_flag" javaType="java.lang.String" jdbcType="VARCHAR" property="cateSecond"/>
+            <columnOverride column="cate_third_flag" javaType="java.lang.String" jdbcType="VARCHAR" property="cateThird" />
+        </table>
+        <table schema="lib"
+               tableName="materiel_adgroup_0"
+               domainObjectName="MyAdgroupModel"
+               mapperName="MyMaterielAdgroupMapper">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="is_deleted" property="deleted" javaType="java.lang.Boolean" jdbcType="TINYINT"/>
+            <columnOverride column="pause" property="pause" javaType="java.lang.Boolean" jdbcType="TINYINT"/>
+            <columnOverride column="region_target" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="targeting" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="media_info" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="front_end_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="negative_words" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="exact_negative_words" javaType="java.lang.String" jdbcType="VARCHAR" />
+
+            <columnOverride column="cate_first_flag" javaType="java.lang.String" jdbcType="VARCHAR" property="cateFirst"/>
+            <columnOverride column="cate_second_flag" javaType="java.lang.String" jdbcType="VARCHAR" property="cateSecond"/>
+            <columnOverride column="cate_third_flag" javaType="java.lang.String" jdbcType="VARCHAR" property="cateThird" />
+        </table>
+        <table schema="lib"
+               tableName="materiel_creative_0"
+               domainObjectName="MyCreativeModel"
+               mapperName="MyMaterielCreativeMapper">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="is_deleted" property="deleted" javaType="java.lang.Boolean" jdbcType="TINYINT"/>
+            <columnOverride column="pause" property="pause" javaType="java.lang.Boolean" jdbcType="TINYINT"/>
+            <columnOverride column="image_info" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="video_info" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="media_info" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="title_info" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="word_info" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="desc_info" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="landing_page_info" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="tracking_urls" javaType="java.lang.String" jdbcType="VARCHAR" />
+
+            <columnOverride column="cate_first_flag" javaType="java.lang.String" jdbcType="VARCHAR" property="cateFirst"/>
+            <columnOverride column="cate_second_flag" javaType="java.lang.String" jdbcType="VARCHAR" property="cateSecond"/>
+            <columnOverride column="cate_third_flag" javaType="java.lang.String" jdbcType="VARCHAR" property="cateThird" />
+        </table>
+        <table schema="lib"
+               tableName="materiel_creative_component_0"
+               domainObjectName="MyCreativeComponentModel"
+               mapperName="MyMaterielCreativeComponentMapper">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="is_deleted" property="deleted" javaType="java.lang.Boolean" jdbcType="TINYINT"/>
+            <columnOverride column="pause" property="pause" javaType="java.lang.Boolean" jdbcType="TINYINT"/>
+            <columnOverride column="media_info" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="audit_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="binding_range" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="reason_text" javaType="java.lang.String" jdbcType="VARCHAR" />
+        </table>-->
+    </context>
+</generatorConfiguration>

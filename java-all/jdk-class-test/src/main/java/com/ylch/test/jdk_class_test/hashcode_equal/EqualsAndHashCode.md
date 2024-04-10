@@ -1,0 +1,19 @@
+在每个类中，在**重写equals方法的时侯，一定要重写hashcode方法**。
+
+根据Object规范，规范约定：
+
+>如果两个对象通过equals方法比较是相等的，那么它们的hashCode方法结果值也是相等的。
+>如果两个对象通过equals方法比较是不相等的，那么不要求它们的hashCode方法结果值是相等的。
+>当在一个应用程序执行过程中， 如果equals方法比较中没有修改任何信息，那么在同一个对象上重复调用hashCode方法时，它必须始终返回相同的值。但如果从一个应用程序到了另一个应用程序，两个应用程序汇中调用hashCode方法的返回值可以是不一致的。
+
+Object类中的默认的equals和hashCode方法：
+
+>equals：比较的是对象的内存地址是否相同（相当于==操作符）；
+
+>hashCode：hashCode方法的返回值符合上述规范。
+因此，当只重写equals方法，不重写hashCode时，违反规定：equals相等的对象必须具有相等的哈希码（因为hashCode的返回值还是按照Object类的规范：同一对象的hashCode值相同）。
+
+如果不这样做，你的类违反了hashCode的通用约定，对于HashSet, HashMap, HashTable等基于hash值的类就会出现问题。
+
+以HashMap为例，当集合要添加新的对象时，先调用这个对象的hashCode方法，得到对应的hashcode值，实际上在HashMap的具体实现中会用一个table保存已经存进去的对象的hashcode值，如果table中没有该hashcode值，它就可以直接存进去，不用再进行任何比较了;如果存在该hashcode值，就调用它的equals方法与新元素进行比较，相同的话就不存了，不相同就散列其它的地址。
+这样解决了向含有大量数据的集合中添加元素时，大量频繁的操作equals方法的问题

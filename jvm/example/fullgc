@@ -1,0 +1,46 @@
+java -Xms7g -Xmx7g -Xmn5g -Xss1024K -XX:PermSize=256m -XX:MaxPermSize=512m -XX:ParallelGCThreads=20 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -Dscf.config.location=/opt/service/lm_scf_tdapi/config/ -jar /opt/service/lm_scf_tdapi/td-scf-api.jar
+
+1.cpu升高
+2.频繁full-gc
+3.没有内存不足
+
+
+[work(yanglaichang)@tjtx176-141-159 logs]$ jstat -gccause 2247
+  S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC
+ 10.47   0.00  56.83  99.50  94.60  90.72   2347   28.126 42281 11213.638 11241.764 CMS Final Remark     No GC
+[work(yanglaichang)@tjtx176-141-159 logs]$ jstat -gccause 2247
+  S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC
+  0.00   8.69  38.25  99.50  94.32  90.39   2348   28.140 42304 11216.997 11245.137 CMS Initial Mark     No GC
+[work(yanglaichang)@tjtx176-141-159 logs]$ jstat -gccause 2247
+  S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC
+  0.00   8.69  38.31  99.50  94.32  90.39   2348   28.140 42304 11216.997 11245.137 CMS Initial Mark     No GC
+[work(yanglaichang)@tjtx176-141-159 logs]$ jstat -gccause 2247
+  S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC
+  0.00   8.69  48.48  99.50  94.32  90.39   2348   28.140 42306 11217.169 11245.309 CMS Initial Mark     No GC
+[work(yanglaichang)@tjtx176-141-159 logs]$ jstat -gccause 2247
+  S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC
+  0.00   8.69  48.79  99.50  94.32  90.39   2348   28.140 42306 11217.169 11245.309 CMS Initial Mark     No GC
+[work(yanglaichang)@tjtx176-141-159 logs]$ jstat -gccause 2247
+  S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC
+  0.00   8.69  48.88  99.50  94.32  90.39   2348   28.140 42307 11217.306 11245.447 CMS Final Remark     No GC
+[work(yanglaichang)@tjtx176-141-159 logs]$ jstat -gccause 2247
+  S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC
+  0.00   8.69  49.25  99.50  94.32  90.39   2348   28.140 42308 11217.367 11245.507 CMS Initial Mark     No GC
+[work(yanglaichang)@tjtx176-141-159 logs]$ jstat -gccause 2247
+  S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC
+  0.00   8.69  58.78  99.50  94.32  90.39   2348   28.140 42310 11217.624 11245.764 CMS Initial Mark     No GC
+[work(yanglaichang)@tjtx176-141-159 logs]$ jstat -gccause 2247
+  S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC
+  0.00   8.69  59.01  99.50  94.32  90.39   2348   28.140 42310 11217.624 11245.764 CMS Initial Mark     No GC
+[work(yanglaichang)@tjtx176-141-159 logs]$ jstat -gccause 2247
+  S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC
+  0.00   8.69  67.86  99.50  94.32  90.39   2348   28.140 42312 11217.885 11246.025 CMS Initial Mark     No GC
+[work(yanglaichang)@tjtx176-141-159 logs]$ jstat -gccause 2247
+  S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC
+  0.00   8.69  90.88  99.50  94.32  90.39   2348   28.140 42318 11218.954 11247.094 CMS Initial Mark     No GC
+[work(yanglaichang)@tjtx176-141-159 logs]$ jstat -gccause 2247
+  S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC
+  0.00   8.69  99.20  99.50  94.32  90.39   2348   28.140 42320 11219.394 11247.534 CMS Initial Mark     No GC
+[work(yanglaichang)@tjtx176-141-159 logs]$ jstat -gccause 2247
+  S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC
+  0.00   8.69  99.22  99.50  94.32  90.39   2348   28.140 42321 11219.394 11247.534 No GC                CMS Final Remark

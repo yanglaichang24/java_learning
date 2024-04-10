@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.yang</groupId>
+    <artifactId>luence</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <lucene.maven.version>9.8.0</lucene.maven.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+        </dependency>
+
+
+        <!--  lucene -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>${lucene.maven.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.jianggujin/IKAnalyzer-lucene -->
+       <!-- <dependency>
+            <groupId>com.jianggujin</groupId>
+            <artifactId>IKAnalyzer-lucene</artifactId>
+            <version>8.0.0</version>
+        </dependency>-->
+
+
+        <!-- https://mvnrepository.com/artifact/com.huaban/jieba-analysis -->
+        <!--<dependency>
+            <groupId>com.huaban</groupId>
+            <artifactId>jieba-analysis</artifactId>
+            <version>1.0.2</version>
+        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analysis-common -->
+        <!--<dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analysis-common</artifactId>
+            <version>${lucene.maven.version}</version>
+        </dependency>
+-->
+
+
+        <!-- <dependency>
+             <groupId>org.apache.lucene</groupId>
+             <artifactId>lucene-backward-codecs</artifactId>
+             <version>${lucene.maven.version}</version>
+         </dependency>
+
+         <dependency>
+             <groupId>org.apache.lucene</groupId>
+             <artifactId>lucene-queries</artifactId>
+             <version>${lucene.maven.version}</version>
+             <exclusions>
+                 <exclusion>
+                     <groupId>jakarta-regexp</groupId>
+                     <artifactId>jakarta-regexp</artifactId>
+                 </exclusion>
+             </exclusions>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.lucene</groupId>
+             <artifactId>lucene-memory</artifactId>
+             <version>${lucene.maven.version}</version>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.lucene</groupId>
+             <artifactId>lucene-highlighter</artifactId>
+             <version>${lucene.maven.version}</version>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.lucene</groupId>
+             <artifactId>lucene-queryparser</artifactId>
+             <version>${lucene.maven.version}</version>
+             <exclusions>
+                 <exclusion>
+                     <groupId>jakarta-regexp</groupId>
+                     <artifactId>jakarta-regexp</artifactId>
+                 </exclusion>
+             </exclusions>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.lucene</groupId>
+             <artifactId>lucene-suggest</artifactId>
+             <version>${lucene.maven.version}</version>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.lucene</groupId>
+             <artifactId>lucene-join</artifactId>
+             <version>${lucene.maven.version}</version>
+         </dependency>
+         &lt;!&ndash; Lucene spatial, make sure when upgrading to work with latest version of jts/spatial4j dependencies &ndash;&gt;
+         <dependency>
+             <groupId>org.apache.lucene</groupId>
+             <artifactId>lucene-spatial</artifactId>
+             <version>${lucene.maven.version}</version>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.lucene</groupId>
+             <artifactId>lucene-expressions</artifactId>
+             <version>${lucene.maven.version}</version>
+             <optional>true</optional>
+         </dependency>-->
+
+    </dependencies>
+
+</project>

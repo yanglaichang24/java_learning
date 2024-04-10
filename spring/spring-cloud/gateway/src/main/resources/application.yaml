@@ -1,0 +1,32 @@
+server:
+  port: 30000
+
+spring:
+  application:
+    name: gateway-demo
+
+  #cloud:
+    #gateway:
+      #routes:
+        #- id: testRoute
+          #uri: http://localhost:20000
+
+          #predicates:
+            #- Path=/a/*
+
+#eureka:
+  #client:
+    #service-url:
+      #defaultZone : http://localhost:9099/eureka
+
+logging:
+  level:
+    root: info
+
+
+management:
+  endpoint:
+    web:
+      exposure:
+        include: gateway
+

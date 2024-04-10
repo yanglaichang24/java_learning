@@ -1,0 +1,191 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGILL (0x4) at pc=0x0000000180d608cc, pid=450, tid=259
+#
+# JRE version: OpenJDK Runtime Environment JBR-11.0.10.8-1145.96-jcef (11.0.10+8) (build 11.0.10+8-b1145.96)
+# Java VM: OpenJDK 64-Bit Server VM JBR-11.0.10.8-1145.96-jcef (11.0.10+8-b1145.96, mixed mode, tiered, compressed oops, concurrent mark sweep gc, bsd-aarch64)
+# Problematic frame:
+# C  [libsystem_kernel.dylib+0x88cc]  __kill+0x8
+#
+# No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Xms128m -Xmx2048m -XX:ReservedCodeCacheSize=512m -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -XX:CICompilerCount=2 -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -ea -Dsun.io.useCanonCaches=false -Djdk.http.auth.tunneling.disabledSchemes="" -Djdk.attach.allowAttachSelf=true -Djdk.module.illegalAccess.silent=true -Dkotlinx.coroutines.debug=off -XX:ErrorFile=/Users/a58/java_error_in_idea_%p.log -XX:HeapDumpPath=/Users/a58/java_error_in_idea.hprof -Djb.vmOptionsFile=/Users/a58/Library/Application Support/JetBrains/IntelliJIdea2020.3/idea.vmoptions -Didea.paths.selector=IntelliJIdea2020.3 -Didea.executable=idea -Didea.home.path=/Applications/IntelliJ IDEA.app/Contents -Didea.vendor.name=JetBrains
+
+Host: MacBookPro17,1 arm64 1 MHz, 8 cores, 16G, Darwin 20.6.0
+Time: Mon Feb 13 17:42:09 2023 CST elapsed time: 473205.396048 seconds (5d 11h 26m 45s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000000013ea37000):  JavaThread "AWT-AppKit" daemon [_thread_in_native, id=259, stack(0x0000000169098000,0x000000016b098000)]
+
+Stack: [0x0000000169098000,0x000000016b098000],  sp=0x000000016b095010,  free space=32756k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libsystem_kernel.dylib+0x88cc]  __kill+0x8
+C  [AppKit+0x48e27c]  uncaughtErrorProc+0x9c
+C  [CoreFoundation+0x18a9d4]  __handleUncaughtException+0x2a4
+C  [libobjc.A.dylib+0x16c28]  _ZL15_objc_terminatev+0x84
+C  [libc++abi.dylib+0x10f2c]  _ZSt11__terminatePFvvE+0x14
+C  [libc++abi.dylib+0x10eb8]  _ZSt9terminatev+0x30
+C  [libdispatch.dylib+0x3ed4]  _dispatch_client_callout+0x28
+C  [libdispatch.dylib+0x12314]  _dispatch_main_queue_callback_4CF+0x374
+C  [CoreFoundation+0xc3998]  __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__+0x10
+C  [CoreFoundation+0x823ac]  __CFRunLoopRun+0x9dc
+C  [CoreFoundation+0x81258]  CFRunLoopRunSpecific+0x258
+C  [HIToolbox+0x30280]  RunCurrentEventLoopInMode+0x124
+C  [HIToolbox+0x2fff4]  ReceiveNextEventCommon+0x228
+C  [HIToolbox+0x2fdb4]  _BlockUntilNextEventMatchingListInModeWithFilter+0x48
+C  [AppKit+0x412ac]  _DPSNextEvent+0x344
+C  [AppKit+0x3fc4c]  -[NSApplication(NSEvent) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]+0x50c
+C  [libosxapp.dylib+0x42a8]  -[NSApplicationAWT nextEventMatchingMask:untilDate:inMode:dequeue:]+0x90
+C  [AppKit+0x31a98]  -[NSApplication run]+0x254
+C  [libosxapp.dylib+0x4084]  +[NSApplicationAWT runAWTLoopWithApp:]+0xc0
+C  [libawt_lwawt.dylib+0x402e4]  +[AWTStarter starter:headless:]+0x30c
+C  [JavaNativeFoundation+0x9560]  +[JNFRunLoop _performCopiedBlock:]+0x1c
+C  [Foundation+0x844f8]  __NSThreadPerformPerform+0xbc
+C  [CoreFoundation+0x83744]  __CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE0_PERFORM_FUNCTION__+0x1c
+C  [CoreFoundation+0x83690]  __CFRunLoopDoSource0+0xd0
+C  [CoreFoundation+0x8337c]  __CFRunLoopDoSources0+0x10c
+C  [CoreFoundation+0x81d04]  __CFRunLoopRun+0x334
+C  [CoreFoundation+0x81258]  CFRunLoopRunSpecific+0x258
+C  [idea+0x470c]  main+0x164
+C  [libdyld.dylib+0x18430]  start+0x4
+
+
+siginfo: si_signo: 4 (SIGILL), si_code: 2 (ILL_ILLTRP), si_addr: 0x0000000180d608cc
+
+Register to memory mapping:
+
+ x0=0x0 is NULL
+ x1=0x0 is NULL
+ x2=0x0000000000000001 is an unknown value
+ x3=0x0000000456ce12cc: cef_time_delta+0x287cb0 in /Applications/IntelliJ IDEA.app/Contents/jbr/Contents/Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework at 0x00000004541cc000
+ x4=0x0000000456ce13cc: cef_time_delta+0x287db0 in /Applications/IntelliJ IDEA.app/Contents/jbr/Contents/Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework at 0x00000004541cc000
+ x5=0x0000000000000017 is an unknown value
+ x6=0x0000000000001a00 is an unknown value
+ x7=0x0 is NULL
+ x8=0x000000010511fe20 points into unknown readable memory: 0x000000010511fd40 | 40 fd 11 05 01 00 00 00
+ x9=0x00000001ebdc4880: _current_pid+0 in /usr/lib/system/libsystem_kernel.dylib at 0x0000000180d58000
+x10=0x00000000000046a5 is an unknown value
+x11=0x00000001f78d1593: CocoaVersionNumber+0x62c1859b in /System/Library/Frameworks/Cocoa.framework/Versions/A/Cocoa at 0x0000000194cb5000
+x12=0x00000001f78d1593: CocoaVersionNumber+0x62c1859b in /System/Library/Frameworks/Cocoa.framework/Versions/A/Cocoa at 0x0000000194cb5000
+x13=0x0000000000000002 is an unknown value
+x14=0x0000000000000881 is an unknown value
+x15=0x000000008000001f is an unknown value
+x16=0x0000000000000025 is an unknown value
+x17=0x000000010508628c points into unknown readable memory: 11 00 00 10
+x18=0x0000000769f71358 is an oop: java.util.concurrent.locks.ReentrantLock$NonfairSync
+{0x0000000769f71358} - klass: 'java/util/concurrent/locks/ReentrantLock$NonfairSync'
+x19=0x0000600007e8a0a0 points into unknown readable memory: 0x02000001eb79d6a1 | a1 d6 79 eb 01 00 00 02
+x20=0x000000013d22abf0 points into unknown readable memory: 0x0100600001d5f067 | 67 f0 d5 01 00 60 00 01
+x21=0x0000000000000001 is an unknown value
+x22=0x0 is NULL
+x23=0x000000036e782200 points into unknown readable memory: 0x01000001eb79c521 | 21 c5 79 eb 01 00 00 01
+x24=0x0000600007e88a20 points into unknown readable memory: 0x02000001eb7ce941 | 41 e9 7c eb 01 00 00 02
+x25=0x0000600008660d90 points into unknown readable memory: 0x01000001eb79c521 | 21 c5 79 eb 01 00 00 01
+x26=0x00000001d9153a07: GCC_except_table770+0x584f5e33 in /usr/lib/libobjc.A.dylib at 0x0000000180c25000
+x27=0x00000001d9155361: GCC_except_table770+0x584f778d in /usr/lib/libobjc.A.dylib at 0x0000000180c25000
+x28=0x000000018129a969: _CFStringCreateByAddingPercentEncodingWithAllowedCharacters.hexchars+0x3224 in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation at 0x0000000180e0e000
+
+
+Registers:
+ x0=0x0000000000000000  x1=0x0000000000000000  x2=0x0000000000000001  x3=0x0000000456ce12cc
+ x4=0x0000000456ce13cc  x5=0x0000000000000017  x6=0x0000000000001a00  x7=0x0000000000000000
+ x8=0x000000010511fe20  x9=0x00000001ebdc4880 x10=0x00000000000046a5 x11=0x00000001f78d1593
+x12=0x00000001f78d1593 x13=0x0000000000000002 x14=0x0000000000000881 x15=0x000000008000001f
+x16=0x0000000000000025 x17=0x000000010508628c x18=0x0000000769f71358 x19=0x0000600007e8a0a0
+x20=0x000000013d22abf0 x21=0x0000000000000001 x22=0x0000000000000000 x23=0x000000036e782200
+x24=0x0000600007e88a20 x25=0x0000600008660d90 x26=0x00000001d9153a07 x27=0x00000001d9155361
+x28=0x000000018129a969  fp=0x000000016b095170  lr=0x0000000183a1d358  sp=0x000000016b095010
+pc=0x0000000180d608cc cpsr=0x0000000080000000
+Top of Stack: (sp=0x000000016b095010)
+0x000000016b095010:   00000001eb79e7e0 00000001ebdf8660
+0x000000016b095020:   0000000000000030 00000001d9153d5b
+0x000000016b095030:   0000000000000000 0000000000000000
+0x000000016b095040:   0000000000000000 0000000000000000
+0x000000016b095050:   0000000000000000 0000000000000000
+0x000000016b095060:   0000000000000000 0000000000000000
+0x000000016b095070:   00000001ebdf48c0 00000001eb7a3000
+0x000000016b095080:   0000600003a15cc0 0000600007e8a0a0
+0x000000016b095090:   000000016b095170 c362800180c2b424
+0x000000016b0950a0:   0000000000000000 0000000000000000
+0x000000016b0950b0:   3030303030783020 3162643038313030
+0x000000016b0950c0:   3030303030783020 3162643038313030
+0x000000016b0950d0:   7261747320303334 0a290a34202b2074
+0x000000016b0950e0:   3ff0000000000000 0000000000000000
+0x000000016b0950f0:   406fe00000000000 0000000000000000
+0x000000016b095100:   0000000000000000 0000000000000000
+0x000000016b095110:   0ff56209218e00cc 0000000000000000
+0x000000016b095120:   000000018129a969 00000001d9155361
+0x000000016b095130:   00000001d9153a07 0000600008660d90
+0x000000016b095140:   0000600007e88a20 000000036e782200
+0x000000016b095150:   00000001ebdf48c0 00000001eb7a3000
+0x000000016b095160:   0000600003a15cc0 0000600007e8a0a0
+0x000000016b095170:   000000016b0951a0 1821000183ace27c
+0x000000016b095180:   000000016b090000 9c5c800180f0f96c
+0x000000016b095190:   00000001ebec8248 0000600007e8a0a0
+0x000000016b0951a0:   000000016b095270 162d800180f989d4
+0x000000016b0951b0:   00000001ebec8248 0000600008660d90
+0x000000016b0951c0:   0000600007e89bc0 0000600008660d90
+0x000000016b0951d0:   3831783002ffffff 2030333431626430
+0x000000016b0951e0:   0000000180c3bc00 0000000180c5d34c
+0x000000016b0951f0:   00000001ebd909d0 0000000180d50d88
+0x000000016b095200:   0000000000000000 000060000725a0c0
+
+Instructions: (pc=0x0000000180d608cc)
+0x0000000180d607cc:   7a409924 54000121 52880068 72a20008
+0x0000000180d607dc:   6b08037f 54000140 aa1a03e0 97ffeed0
+0x0000000180d607ec:   34fff7db 14000009 36000068 f94013e0
+0x0000000180d607fc:   14000002 f94017e0 94000266 aa1a03e0
+0x0000000180d6080c:   97ffeec7 17ffffab 52880088 72a20008
+0x0000000180d6081c:   6b08037f 54000241 36100235 f94017e1
+0x0000000180d6082c:   b9400428 b9400fe9 0b090108 90358329
+0x0000000180d6083c:   9122e129 b9400129 0b080128 51000508
+0x0000000180d6084c:   4b0903e9 0a09011a 2a1403e2 b9401fe0
+0x0000000180d6085c:   97ffea33 aa1a03f9 17ffff8c f94017e1
+0x0000000180d6086c:   2a1403e2 b9401ff3 aa1303e0 97ffea2c
+0x0000000180d6087c:   f9400be2 f94013e1 aa1303e0 97ffea28
+0x0000000180d6088c:   aa1b03e0 a9487bfd a9474ff4 a94657f6
+0x0000000180d6089c:   a9455ff8 a94467fa a9436ffc 910243ff
+0x0000000180d608ac:   d65f0fff aa0003fb b9401ff3 17fffff1
+0x0000000180d608bc:   52800022 14000001 d28004b0 d4001001
+0x0000000180d608cc:   54000103 d503237f a9bf7bfd 910003fd
+0x0000000180d608dc:   97ffe3a5 910003bf a8c17bfd d65f0fff
+0x0000000180d608ec:   d65f03c0 d2800450 d4001001 54000103
+0x0000000180d608fc:   d503237f a9bf7bfd 910003fd 97ffe39a
+0x0000000180d6090c:   910003bf a8c17bfd d65f0fff d65f03c0
+0x0000000180d6091c:   d28017f0 d4001001 54000103 d503237f
+0x0000000180d6092c:   a9bf7bfd 910003fd 97ffe745 910003bf
+0x0000000180d6093c:   a8c17bfd d65f0fff d65f03c0 d503237f
+0x0000000180d6094c:   a9be4ff4 a9017bfd 910043fd aa0003f3
+0x0000000180d6095c:   9400000b 71000e7f 540000c1 3100081f
+0x0000000180d6096c:   54000081 52800000 97fff5bf 52800000
+0x0000000180d6097c:   a9417bfd a8c24ff4 d65f0fff d2800c10
+0x0000000180d6098c:   d4001001 54000103 d503237f a9bf7bfd
+0x0000000180d6099c:   910003fd 97ffe374 910003bf a8c17bfd
+0x0000000180d609ac:   d65f0fff d65f03c0 d503237f d10343ff
+0x0000000180d609bc:   a90867fa a9095ff8 a90a57f6 a90b4ff4
+
+
+Stack slot to memory mapping:
+stack at sp + 0 slots: 0x00000001eb79e7e0: __CFRuntimeClassTable+0 in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation at 0x0000000180e0e000
+stack at sp + 1 slots: 0x00000001ebdf8660: __CFStringClass+0 in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation at 0x0000000180e0e000
+stack at sp + 2 slots: 0x0000000000000030 is an unknown value
+stack at sp + 3 slots: 0x00000001d9153d5b: GCC_except_table770+0x584f6187 in /usr/lib/libobjc.A.dylib at 0x0000000180c25000
+stack at sp + 4 slots: 0x0 is NULL
+stack at sp + 5 slots: 0x0 is NULL
+stack at sp + 6 slots: 0x0 is NULL
+stack at sp + 7 slots: 0x0 is NULL
+
+
+
+
+com.intellij.diagnostic.JBRCrash

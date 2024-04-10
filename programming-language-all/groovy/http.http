@@ -1,0 +1,10 @@
+
+GET https://ad.oceanengine.com/open_api/2/campaign/get?advertiser_id=1726084168607816&filtering={"ids":[1734311670857758]}&id={{$randomInt}}&ts={{$timestamp}}
+Accept: application/json
+Access-Token:8f6898a31914aa71b6543e226cac820b8166322d
+
+#> {%
+#   client.test("Request executed successfully", function() {
+#   client.assert(response.status === 200, "Response status is not 200");
+#});
+#%}

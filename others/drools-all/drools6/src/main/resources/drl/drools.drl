@@ -1,0 +1,21 @@
+package yang.drools
+import yang.drools.Student
+
+
+rule "rule-1"
+     when
+         $student:Student(score < 100)
+     then
+         $student.setType("1");
+         System.out.println("匹配");
+end
+
+rule "rule-2"
+     when
+         $student:Student(score >= 100 && score <= 200  )
+     then
+         $student.setType("2");
+         System.out.println("匹配");
+end
+
+
