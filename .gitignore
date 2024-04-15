@@ -7,3 +7,5 @@
 
 /*/*/**.iml
 /others/marketing-api/
+
+!mybatis-all/mybatis-spring/src/test/

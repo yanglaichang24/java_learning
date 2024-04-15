@@ -1,8 +1,7 @@
-package com.bj58.lianmeng.td.promotion.lib.dao.mapper;
+package com.yang.service;
 
-
-import com.bj58.lianmeng.td.promotion.lib.dao.model.TaskModel;
-import org.springframework.context.annotation.ComponentScan;
+import com.yang.dao.mapper.TaskMapper;
+import com.yang.dao.model.TaskModel;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 

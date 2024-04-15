@@ -9,22 +9,26 @@
    	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
    	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+     <context:property-placeholder location="classpath:conf.properties"/>
+
      <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-          <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-          <property name="url" value="jdbc:mysql://192.168.2.6:3306/test_db?serverTimezone=UTC&amp;useSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
-          <property name="username" value="root"/>
-          <property name="password" value="123456"/>
+          <property name="driverClassName" value="${db.driverClassName}"/>
+          <property name="url" value="${db.url}"/>
+          <property name="username" value="${db.username}"/>
+          <property name="password" value="${db.username}"/>
      </bean>
 
      <!--获取sqlSessionFactory对象-->
      <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
           <property name="dataSource" ref="dataSource"/>
           <!--绑定mybatis的配置文件-->
-<!--          <property name="mapperLocations" value="classpath:com/bj58/lianmeng/td/promotion/lib/dao/mapper/*.xml"/>-->
+<!--          <property name="configLocation" value="mybatis-config.xml"/>-->
+          <!--绑定映射的xml-->
+          <property name="typeAliasesPackage" value="com.yang.dao.model"/>
      </bean>
 
      <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-          <property name="basePackage" value="com.bj58.lianmeng.td.promotion.lib.dao.mapper"/>
+          <property name="basePackage" value="com.yang.dao.mapper"/>
      </bean>
 
      <!--注册sqlSession对象  对应的SqlSessionTemplate-->
@@ -32,8 +36,12 @@
           <constructor-arg index="0" ref="sqlSessionFactory"/>
      </bean>
 
+     <tx:annotation-driven transaction-manager="txManager"/>
 
+     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+          <property name="dataSource" ref="dataSource"/>
+     </bean>
 
-
+     <bean id="taskService" class="com.yang.service.TaskService"/>
 
 </beans>
