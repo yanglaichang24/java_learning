@@ -1,9 +1,8 @@
 package yang.mybatis;
 
-import com.bj58.lianmeng.td.promotion.lib.dao.mapper.MaterielImageMapper;
-import com.bj58.lianmeng.td.promotion.lib.dao.mapper.TaskMapper;
-import com.bj58.lianmeng.td.promotion.lib.dao.model.ImageModel;
-import com.bj58.lianmeng.td.promotion.lib.dao.model.TaskModel;
+
+import com.yang.dao.mapper.TaskMapper;
+import com.yang.dao.model.TaskModel;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -23,7 +22,7 @@ public class MybatisMain {
 
 
     @Test
-    public void test(){
+    public void select(){
         try {
             //1,加载mybatis核心配置文件SqlMapperConfig.xml
             InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapperConfig.xml");
@@ -31,7 +30,8 @@ public class MybatisMain {
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
             //3,创建SessionFactory
             SqlSession session = sqlSessionFactory.openSession();
-            String statement = "com.bj58.lianmeng.td.promotion.lib.dao.mapper.TaskMapper.selectByPrimaryKey";
+
+            String statement = "com.yang.dao.mapper.TaskMapper.selectByPrimaryKey";
             List<TaskModel> objects = session.selectList(statement,1);
             for (TaskModel user : objects) {
                 System.out.println(user);
@@ -135,32 +135,6 @@ public class MybatisMain {
             e.printStackTrace();
         }
     }
-
-
-
-    @Test
-    public void test2(){
-        try {
-            //1,加载mybatis核心配置文件SqlMapperConfig.xml
-            InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapperConfig.xml");
-            //2,创建SqlSessionFactory对象
-            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
-            //3,创建SessionFactory
-            SqlSession session = sqlSessionFactory.openSession();
-            MaterielImageMapper mapper = session.getMapper(MaterielImageMapper.class);
-            ImageModel imageModel = mapper.selectByPrimaryKey(855759642590969862L);
-            System.out.println(imageModel);
-            session.commit();
-            session.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-
-
 
 
 }

@@ -18,24 +18,27 @@
 <!--                <property name="password" value="${jdbc.password}"/>-->
 <!--            </dataSource>-->
 
-                <dataSource type="POOLED">
+                <!--<dataSource type="POOLED">
                     <property name="driver" value="com.mysql.jdbc.Driver"/>
                     <property name="url" value="jdbc:mysql://192.168.2.6:3306/test_db?characterEncoding=utf-8"/>
                     <property name="username" value="root"/>
                     <property name="password" value="123456"/>
-                </dataSource>
+                </dataSource>-->
 
-<!--                            <dataSource type="POOLED">-->
-<!--                                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>-->
-<!--                                <property name="url" value="jdbc:mysql://test-eic-15.db.58dns.org:53384/db58_promotionlibtest?characterEncoding=utf-8"/>-->
-<!--                                <property name="username" value="promotion_test"/>-->
-<!--                                <property name="password" value="15215159467a66b5"/>-->
-<!--                            </dataSource>-->
+          <dataSource type="POOLED">
+                <property name="driver" value="org.sqlite.JDBC"/>
+                <property name="url" value="jdbc:sqlite:D://idea_pro/test-new/mybatis-all/mybatis.db"/>
+                <property name="username" value=""/>
+                <property name="password" value=""/>
+          </dataSource>
 
         </environment>
     </environments>
+
     <!-- 配置mapper映射 -->
     <mappers>
-        <mapper resource="TaskMapper.xml"/>
+        <!--<mapper resource="com.yang.dao.mapper.TaskMapper"/>-->
+        <package name="com.yang.dao.mapper"/>
     </mappers>
+
 </configuration>

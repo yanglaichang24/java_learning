@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bj58.lianmeng.td.promotion.lib.dao.mapper.MaterielImageMapper">
-  <resultMap id="BaseResultMap" type="com.bj58.lianmeng.td.promotion.lib.dao.model.ImageModel">
+<mapper namespace="com.bj.lianmeng.td.promotion.lib.dao.mapper.MaterielImageMapper">
+  <resultMap id="BaseResultMap" type="com.bj.lianmeng.td.promotion.lib.dao.model.ImageModel">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="media_id" jdbcType="INTEGER" property="mediaId" />
     <result column="platform_account_id" jdbcType="VARCHAR" property="platformAccountId" />
@@ -95,7 +95,7 @@
     media_info, image_id, image_name, source_type, width, height, size, url, format, 
     signature, is_collect, platform_material_id, material_type
   </sql>
-  <select id="selectByExample" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.ImageModelExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.ImageModelExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -119,13 +119,13 @@
     delete from materiel_image
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.ImageModelExample">
+  <delete id="deleteByExample" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.ImageModelExample">
     delete from materiel_image
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.ImageModel">
+  <insert id="insert" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.ImageModel">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -150,7 +150,7 @@
       #{isCollect,jdbcType=TINYINT}, #{platformMaterialId,jdbcType=VARCHAR}, #{materialType,jdbcType=TINYINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.ImageModel">
+  <insert id="insertSelective" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.ImageModel">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -322,7 +322,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.ImageModelExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.ImageModelExample" resultType="java.lang.Long">
     select count(*) from materiel_image
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -454,7 +454,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.ImageModel">
+  <update id="updateByPrimaryKeySelective" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.ImageModel">
     update materiel_image
     <set>
       <if test="mediaId != null">
@@ -541,7 +541,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.ImageModel">
+  <update id="updateByPrimaryKey" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.ImageModel">
     update materiel_image
     set media_id = #{mediaId,jdbcType=INTEGER},
       platform_account_id = #{platformAccountId,jdbcType=VARCHAR},
@@ -572,7 +572,7 @@
       material_type = #{materialType,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByExampleWithRowbounds" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.ImageModelExample" resultMap="BaseResultMap">
+  <select id="selectByExampleWithRowbounds" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.ImageModelExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct

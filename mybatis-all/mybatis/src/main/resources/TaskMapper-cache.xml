@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bj58.lianmeng.td.promotion.lib.dao.mapper.TaskMapper">
+<mapper namespace="com.bj.lianmeng.td.promotion.lib.dao.mapper.TaskMapper">
 
   <!--  开启二级缓存 -->
-  <!--    <cache/>-->
+  <!--   <cache/>-->
   <cache eviction="FIFO" flushInterval="60000" readOnly="false" size="1024"/>
 
-  <resultMap id="BaseResultMap" type="com.bj58.lianmeng.td.promotion.lib.dao.model.TaskModel">
+  <resultMap id="BaseResultMap" type="com.bj.lianmeng.td.promotion.lib.dao.model.TaskModel">
     <id column="task_id" jdbcType="INTEGER" property="taskId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="start_date" jdbcType="DATE" property="startDate" />
@@ -14,7 +14,7 @@
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="priority" jdbcType="TINYINT" property="priority" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.bj58.lianmeng.td.promotion.lib.dao.model.TaskModel">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.bj.lianmeng.td.promotion.lib.dao.model.TaskModel">
     <result column="description" jdbcType="LONGVARCHAR" property="description" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -81,7 +81,7 @@
   <sql id="Blob_Column_List">
     description
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.TaskModelExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.TaskModelExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -97,7 +97,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.TaskModelExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.TaskModelExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -123,13 +123,13 @@
     delete from tasks
     where task_id = #{taskId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.TaskModelExample">
+  <delete id="deleteByExample" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.TaskModelExample">
     delete from tasks
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.TaskModel">
+  <insert id="insert" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.TaskModel">
     insert into tasks (task_id, title, start_date, 
       due_date, status, priority, 
       description)
@@ -137,7 +137,7 @@
       #{dueDate,jdbcType=DATE}, #{status,jdbcType=TINYINT}, #{priority,jdbcType=TINYINT}, 
       #{description,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.TaskModel">
+  <insert id="insertSelective" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.TaskModel">
     insert into tasks
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="taskId != null">
@@ -186,7 +186,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.TaskModelExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.TaskModelExample" resultType="java.lang.Long">
     select count(*) from tasks
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -246,7 +246,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.TaskModel">
+  <update id="updateByPrimaryKeySelective" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.TaskModel">
     update tasks
     <set>
       <if test="title != null">
@@ -270,7 +270,7 @@
     </set>
     where task_id = #{taskId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.TaskModel">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.TaskModel">
     update tasks
     set title = #{title,jdbcType=VARCHAR},
       start_date = #{startDate,jdbcType=DATE},
@@ -280,7 +280,7 @@
       description = #{description,jdbcType=LONGVARCHAR}
     where task_id = #{taskId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.TaskModel">
+  <update id="updateByPrimaryKey" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.TaskModel">
     update tasks
     set title = #{title,jdbcType=VARCHAR},
       start_date = #{startDate,jdbcType=DATE},
@@ -289,7 +289,7 @@
       priority = #{priority,jdbcType=TINYINT}
     where task_id = #{taskId,jdbcType=INTEGER}
   </update>
-  <select id="selectByExampleWithBLOBsWithRowbounds" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.TaskModelExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBsWithRowbounds" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.TaskModelExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -305,7 +305,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExampleWithRowbounds" parameterType="com.bj58.lianmeng.td.promotion.lib.dao.model.TaskModelExample" resultMap="BaseResultMap">
+  <select id="selectByExampleWithRowbounds" parameterType="com.bj.lianmeng.td.promotion.lib.dao.model.TaskModelExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
