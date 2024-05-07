@@ -1,8 +1,7 @@
-package yang.boot;
+package com.yang;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * @author Mr.Yang
@@ -13,9 +12,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class Application {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext run = SpringApplication.run(Application.class, args);
-        Object test = run.getBean("test");
-        System.out.println(test);
+        SpringApplication.run(Application.class, args);
     }
 
 }
