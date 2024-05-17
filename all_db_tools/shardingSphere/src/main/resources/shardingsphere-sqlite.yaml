@@ -1,0 +1,130 @@
+
+#不配置默认是单机模式
+#mode:
+# 运行模式类型。可选配置：Standalone、Cluster
+#type: Standalone
+# 持久化仓库配置
+#repository:
+#type: # 持久化仓库类型
+#props: # 持久化仓库所需属性
+#foo_key: foo_value
+#bar_key: bar_value
+
+#集群模式
+#mode:
+#type: Cluster
+#repository:
+#type: ZooKeeper
+#props:
+#namespace: governance
+#server-lists: localhost:2181
+#retryIntervalMilliseconds: 500
+#timeToLiveSeconds: 60
+
+mode:
+  # 运行模式类型。可选配置：Standalone、Cluster
+  type: Standalone
+
+databaseName: main
+
+#数据源配置
+dataSources:
+  #names: ds-deft,ds-0,ds-1,ds-2,ds-3
+  ds-deft:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: org.sqlite.JDBC
+    jdbcUrl: jdbc:sqlite:all_db_tools/shardingSphere/sharding_sphere.db
+    username: "xx"
+    password:
+
+
+  ds-0:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: org.sqlite.JDBC
+    jdbcUrl: jdbc:sqlite:D:\idea_pro\test-new\all_db_tools\shardingSphere\sharding_sphere_0.db
+    username: "xx"
+    password:
+
+
+  ds-1:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: org.sqlite.JDBC
+    jdbcUrl: jdbc:sqlite:D:\idea_pro\test-new\all_db_tools\shardingSphere\sharding_sphere_1.db
+    username: "xx"
+    password:
+
+
+#规则配置
+rules:
+  #分片
+  - !SHARDING
+    # 数据分片规则配置
+    tables:
+      # 逻辑表名称
+      t_order:
+        # 由数据源名 + 表名组成（参考 Inline 语法规则）
+        actualDataNodes: ds-$->{0..1}.t_order_$->{0..1}
+        #分库策略
+        databaseStrategy:
+          #用于单分片键的标准分片场景
+          standard:
+            shardingColumn: account_id
+            shardingAlgorithmName: db-inline
+        #分表策略
+        tableStrategy:
+          standard:
+            shardingColumn: order_id
+            shardingAlgorithmName: table-inline
+
+        keyGenerateStrategy:
+          column: id# 自增列名称，缺省表示不使用自增主键生成器
+          keyGeneratorName: snowflake # 分布式序列算法名称
+
+      #defaultDatabaseStrategy:
+      #
+
+
+
+    defaultTableStrategy:
+      none:
+
+    keyGenerators:
+      snowflake:
+        type: SNOWFLAKE
+        props:
+          worker-id: 101
+
+    # 分片算法配置
+    shardingAlgorithms:
+      #分库策略
+      db-inline:
+        #分片算法类型
+        type: INLINE
+        #分片算法属性配置
+        props:
+          algorithm-expression: ds-$->{account_id.hashCode() & 2}
+
+      table-inline:
+        type: INLINE
+        props:
+          algorithm-expression: order_$->{order_id % 2}
+
+    #读写分离
+    #- !READWRITE_SPLITTING
+
+    #分布式事物
+    #- !TRANSACTION
+    #defaultType: # 事务模式，可选值 LOCAL/XA/BASE
+    #providerType: # 指定模式下的具体实现
+
+
+  #数据加密
+
+  #SQL 解析
+
+  #SQL 翻译
+
+  #数据分片路由缓存
+
+
+

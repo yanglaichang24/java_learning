@@ -1,13 +1,51 @@
+/*
+import akka.actor.ActorContext;
+import akka.actor.ActorRef;
 import akka.actor.UntypedActor;
+import scala.Option;
+import scala.PartialFunction;
+import scala.runtime.BoxedUnit;
 
+*/
 /**
  * @author Mr.Yang
  * @desc BankActor
  * @date 2022/10/18 13:38
- */
+ *//*
+
 public class BankActor extends UntypedActor {
 
     private int count;
+
+    @Override
+    public ActorRef sender() {
+        return super.sender();
+    }
+
+    @Override
+    public void aroundReceive(PartialFunction<Object, BoxedUnit> receive, Object msg) {
+        super.aroundReceive(receive, msg);
+    }
+
+    @Override
+    public void aroundPreStart() {
+        super.aroundPreStart();
+    }
+
+    @Override
+    public void aroundPostStop() {
+        super.aroundPostStop();
+    }
+
+    @Override
+    public void aroundPreRestart(Throwable reason, Option<Object> message) {
+        super.aroundPreRestart(reason, message);
+    }
+
+    @Override
+    public void aroundPostRestart(public Throwable reason) {
+        super.aroundPostRestart(reason);
+    }
 
     @Override
     public void preStart() throws Exception, Exception {
@@ -39,9 +77,20 @@ public class BankActor extends UntypedActor {
         }
     }
 
+    @Override
+    public ActorContext context() {
+        return null;
+    }
+
+    @Override
+    public ActorRef self() {
+        return null;
+    }
+
     enum Command {
         ADD,
         MINUS,
         GET
     }
 }
+*/

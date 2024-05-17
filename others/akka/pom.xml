@@ -11,6 +11,8 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <scala.version>2.12.17</scala.version>
+        <scala.binary.version>2.12</scala.binary.version>
     </properties>
 
     <dependencies>
@@ -41,7 +43,39 @@
             <version>2.7.0-M1</version>
         </dependency>
 
+        <!-- Scala library dependency -->
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+        <!-- Add other dependencies here -->
+
 
     </dependencies>
+
+
+    <build>
+        <plugins>
+            <!-- Scala Maven Plugin -->
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>4.4.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <scalaVersion>${scala.binary.version}</scalaVersion>
+                </configuration>
+            </plugin>
+            <!-- Add other plugins here -->
+        </plugins>
+    </build>
 
 </project>

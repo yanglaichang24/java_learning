@@ -18,7 +18,7 @@ public class ShardingsphereDemo {
 
 
     public static void main(String[] args) throws URISyntaxException, IOException, SQLException {
-        URL resource = ShardingsphereDemo.class.getResource("shardingspheredemo.yaml");
+        URL resource = ShardingsphereDemo.class.getResource("shardingsphere-demo.yaml");
         DataSource dataSource = YamlShardingSphereDataSourceFactory.createDataSource(new File(resource.toURI()));
         Connection connection = dataSource.getConnection();
 

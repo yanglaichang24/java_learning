@@ -1,3 +1,4 @@
+/*
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
@@ -8,16 +9,19 @@ import scala.concurrent.Future;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 
+*/
 /**
  * @author Mr.Yang
  * @desc HelloWord
  * @date 2022/10/18 10:24
- */
+ *//*
+
 public class HelloWord {
 
     public static void main(String[] args) throws InterruptedException {
 
         final ActorSystem actorSystem = ActorSystem.create("actor-system");
+
         final ActorRef actorRef = actorSystem.actorOf(Props.create(BankActor.class), "bank-actor");
 
         CountDownLatch addCount = new CountDownLatch(20);
@@ -49,7 +53,8 @@ public class HelloWord {
         addCount.await();
 
         Future<Object> count = Patterns.ask(actorRef, BankActor.Command.GET, 1000);
-        count.onComplete(
+       */
+/* count.onComplete(
                 new OnComplete<Object>() {
                     @Override
                     public void onComplete(Throwable failure, Object success) throws Throwable {
@@ -59,8 +64,11 @@ public class HelloWord {
                             //log.info("Get result from " + success);
                         }
                     }
-                },null);
-                //Executors.directExecutionContext());
+                },null);*//*
+
+               */
+/* Executors.directExecutionContext());*//*
+
         actorSystem.shutdown();
 
 
@@ -68,3 +76,4 @@ public class HelloWord {
 
 
 }
+*/

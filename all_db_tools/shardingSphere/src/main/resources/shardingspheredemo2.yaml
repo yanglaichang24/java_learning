@@ -72,7 +72,7 @@ rules:
             sharding-algorithm-name: kw-table-inline
 
           # 分布式序列算法配置
-          key-generators:
+          keyGenerators:
             snowflake:
               type: SNOWFLAKE
               props:
