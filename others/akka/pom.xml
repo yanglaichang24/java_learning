@@ -16,32 +16,26 @@
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/com.typesafe.akka/akka-actor -->
-<!--        <dependency>-->
-<!--            <groupId>com.typesafe.akka</groupId>-->
-<!--            <artifactId>akka-actor_3</artifactId>-->
-<!--            <version>2.7.0-M1</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-actor_2.11</artifactId>
+            <artifactId>akka-actor_2.12</artifactId>
             <version>2.4.20</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.typesafe.akka/akka-testkit -->
-        <dependency>
+       <!-- <dependency>
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-testkit_3</artifactId>
             <version>2.7.0-M1</version>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/com.typesafe.akka/akka-stream -->
-        <dependency>
+      <!--  <dependency>
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-stream_3</artifactId>
             <version>2.7.0-M1</version>
-        </dependency>
+        </dependency>-->
 
         <!-- Scala library dependency -->
         <dependency>

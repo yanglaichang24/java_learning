@@ -12,6 +12,7 @@ public class Demo {
 
 
     public static void main(String[] args) {
+        // 实例化scala 对象
         Hello pt = new Hello(10, 20);
         pt.move(10, 10);
     }
